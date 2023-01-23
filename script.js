@@ -43,4 +43,16 @@ function operate(setString) {
         return quotient;
     }
 };
+
+
 //idea for not running calc unless we can divide the array length by 3 and get 0, so setArray.length % 3 == 0
+const display = document.querySelector('.display');
+const numberButtons = document.querySelectorAll('.number');
+numberButtons.forEach(button => button.addEventListener('click', addToDisplay));
+
+function addToDisplay(event) {
+    const id = event.target.id;
+    display.textContent += id;
+}
+
+//look at target's id and then display it
