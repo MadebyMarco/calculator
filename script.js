@@ -20,33 +20,26 @@ function multiply(...arr) {
     return(sum);
 };
 
-function division(a, b) {
+function divide(a, b) {
     return a / b;
 };
 
 function operate(setString) {
-    const test = setString.split(/[+-/*\s_]+/);
-    console.log(test);
-    const setArray = Array.from(setString);
+    const setArray = setString.split(/[+-/*\s_]+/);
+    const operation = Array.from(setString);
+    const setNumbers = setArray.map(item => parseInt(item, 10));
 
-    console.log(setArray);
-    
-    const setNumbers = setArray
-        .filter(item => item !== '+' && item !== '/' && item !== '*' && item !== '-' && item !== ' ')
-        .map(item => parseInt(item, 10));
-    console.log(setNumbers);
-
-    if (setArray.includes('+')) { 
+    if (operation.includes('+')) { 
        const sum = add(setNumbers[0], setNumbers[1]);
        return sum;
-    } else if (setArray.includes('-')) { 
+    } else if (operation.includes('-')) { 
         const difference = subtract(setNumbers[0], setNumbers[1]);
         return difference;
-    } else if (setArray.includes('*')) { 
+    } else if (operation.includes('*')) { 
         const product = multiply(setNumbers[0], setNumbers[1]);
         return product;
-    } else if (setArray.includes('/')) { 
-        const quotient = subtract(setNumbers[0], setNumbers[1]);
+    } else if (operation.includes('/')) { 
+        const quotient = divide(setNumbers[0], setNumbers[1]);
         return quotient;
     }
 };
