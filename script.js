@@ -48,11 +48,25 @@ function operate(setString) {
 //idea for not running calc unless we can divide the array length by 3 and get 0, so setArray.length % 3 == 0
 const display = document.querySelector('.display');
 const numberButtons = document.querySelectorAll('.number');
+let displayArray = [];
 numberButtons.forEach(button => button.addEventListener('click', addToDisplay));
 
 function addToDisplay(event) {
     const id = event.target.id;
+    displayArray.push(id);
+    console.log(displayArray);
+    if(display.textContent === '0') display.textContent = ''; //removes 0 from display
+    
     display.textContent += id;
-}
+};
 
+const clearButton = document.querySelector('#clear');
+
+clearButton.addEventListener('click', clearDisplay);
+
+function clearDisplay(){
+    display.textContent = 0;
+    displayArray = [];
+    console.log(displayArray);
+};
 //look at target's id and then display it
