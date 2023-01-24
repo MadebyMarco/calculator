@@ -25,9 +25,10 @@ function divide(a, b) {
 };
 
 function operate(setString) {
-    const setArray = setString.split(/[+-/*\s_]+/);
+    const setArray = setString.split(/[+-/*]+/);
     const operation = Array.from(setString);
     const setNumbers = setArray.map(item => parseInt(item, 10));
+    console.log(setArray);
 
     if (operation.includes('+')) { 
        const sum = add(setNumbers[0], setNumbers[1]);
@@ -49,13 +50,14 @@ function operate(setString) {
 const display = document.querySelector('.display');
 const numberButtons = document.querySelectorAll('.number');
 let displayArray = [];
+
 numberButtons.forEach(button => button.addEventListener('click', addToDisplay));
 
 function addToDisplay(event) {
     const id = event.target.id;
     displayArray.push(id);
     console.log(displayArray);
-    if(display.textContent === '0') display.textContent = ''; //removes 0 from display
+    if(displayArray.length == 1) display.textContent = ''; //removes 0 from display
     
     display.textContent += id;
 };
@@ -69,4 +71,16 @@ function clearDisplay(){
     displayArray = [];
     console.log(displayArray);
 };
+
+const equalsButton = document.querySelector('#equals');
+
+equalsButton.addEventListener('click', () => {
+    const displayString = displayArray.join('');
+    console.log(displayString);
+    const result = operate(displayString);
+    displayArray = [];
+    display.textContent = result;
+
+});
 //look at target's id and then display it
+
