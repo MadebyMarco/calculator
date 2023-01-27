@@ -84,7 +84,8 @@ function clearDisplay(){
 const equalsButton = document.querySelector('#equals');
 
 equalsButton.addEventListener('click', () => {
-    const result = loopOperation();
+    let result = loopOperation();
+    if(result == 'Infinity') alert('Nice try'), result = 0;
     display.textContent = result;
     displayArray = [];
 });
